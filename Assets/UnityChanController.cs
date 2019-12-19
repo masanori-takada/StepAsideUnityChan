@@ -34,6 +34,7 @@ public class UnityChanController : MonoBehaviour
 
     bool isLButtonDown = false;
     bool isRButtonDown = false;
+    bool isJumpButtonDown = false;
 
 
     void Start()
@@ -80,8 +81,16 @@ public class UnityChanController : MonoBehaviour
             //setするものの型に応じて、SetFloat　や、　SetBool（真偽値）　がある
         }
 
+        if (Input.GetKeyDown(KeyCode.Space) && this.transform.position.y < 0.5f)
+        {
+            //ジャンプアニメを再生（追加）
+            this.myAnimator.SetBool("Jump", true);
+            //Unityちゃんに上方向の力を加える（追加）
+            this.myRigidbody.AddForce(this.transform.up * this.upForce);
+        }
+
         if (this.isEnd)
-            //上記のOnTriggerEnter関数で、this.isEnd　が　true になった場合のケース
+        //上記のOnTriggerEnter関数で、this.isEnd　が　true になった場合のケース
         {
             //全ての力に減衰係数をかけて、徐々に止まるようにする
             this.forwardForce *= this.coefficient;
@@ -107,6 +116,7 @@ public class UnityChanController : MonoBehaviour
     public void GetLeftButtonDown()  //ボタンUIに貼り付けるためのpublic
     {
         this.isLButtonDown = true;
+        //左右のボタンダウンアップはどのように機能しているのか？？？？？
     }
 
     public void GetLeftButtonUp()  //ボタンUIに貼り付けるためのpublic
@@ -153,7 +163,7 @@ public class UnityChanController : MonoBehaviour
         }
     }
 
-    
+
 
 
 
