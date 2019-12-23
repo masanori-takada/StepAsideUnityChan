@@ -58,6 +58,7 @@ public class UnityChanController : MonoBehaviour
         this.myRigidbody.AddForce(this.transform.forward * this.forwardForce);
         //this.transform.forward が「オブジェクトの前方方向の単位ベクトル」
         //前方方向とは、カメラから見たゲームシーンの前方方向
+        Debug.Log(this.myRigidbody.velocity.z);
 
         if ((Input.GetKey(KeyCode.LeftArrow) || this.isLButtonDown) && -this.movableRange < this.transform.position.x)
         {
